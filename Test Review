@@ -1,0 +1,70 @@
+Windows Persistance
+install sysinternals:
+net use * https://live/sysinternals.com
+(-accepteula on cli cmds)
+
+Runkeys:
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+HKLM\Software\Microsoft\Windows\CurrentVersion\Run
+
+HKLM\Software\Microsoft\Windows\CurrentVersion\RunOnce
+
+HKU\<SID>\Software\Microsoft\Windows\CurrentVersion\Run
+
+HKU\<SID>\Software\Microsoft\Windows\CurrentVersion\RunOnce
+
+HKLM\SYSTEM\CurrentControlSet\services
+
+HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders
+
+HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders
+
+HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon
+Powershell Profiles:
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+All Users, All Hosts
+Get-Content $PsHome\Profile.ps1
+
+All Users, Current Host
+Get-Content $PsHome\Microsoft.PowerShell_profile.ps1
+
+Current User, All Hosts
+Get-Content $Home\[My]Documents\Profile.ps1
+
+Current User, Current Host
+Get-Content $Home\[My ]Documents\WindowsPowerShell\Profile.ps1
+
+Scheduled Tasks:
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+Task Scheduler.exe
+autoruns
+Services:
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+services.exe
+sc query
+get-service
+Get-Ciminstance Win32_service | Select Name, Processid, Pathname | more | ft -wrap 
+
+
+Linux persistance
+
+(sysV)
+/etc/init
+/etc/inittab
+/etc/rc*.d
+service <servicename> status
+
+(sysD)
+/usr/lib/systemd/system
+/lib/systemd/system
+systemctl
+
+/etc/profile
+
+ps -elf | grep
+
+scheduled tasks:
+/var/spool/cron
+/etc/cron.d
+/etc/crontab
