@@ -59,10 +59,12 @@ service <servicename> status
 /usr/lib/systemd/system
 /lib/systemd/system
 systemctl
-
+cat
 /etc/profile
 
 ps -elf | grep
+sudo lsof -i (connections) -c (processes)
+
 
 scheduled tasks:
 /var/spool/cron
