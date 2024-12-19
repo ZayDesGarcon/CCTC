@@ -1,0 +1,36 @@
+sudo iptables -t filter -A INPUT -p tcp -sport   
+
+
+sudo iptables -A INPUT -p tcp --dport 22 -m state --state NEW,ESTABLISHED -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 23 -m state --state NEW,ESTABLISHED -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 3389 -m state --state NEW,ESTABLISHED -j ACCEPT
+sudo iptables -A OUTPUT -p tcp --sport 22 -m state --state NEW,ESTABLISHED -j ACCEPT
+sudo iptables -A OUTPUT -p tcp --sport 23 -m state --state NEW,ESTABLISHED -j ACCEPT
+sudo iptables -A OUTPUT -p tcp --sport 3389 -m state --state NEW,ESTABLISHED -j ACCEPT
+sudo iptables -P INPUT DROP
+sudo iptables -P OUTPUT DROP
+sudo iptables -P FORWARD DROP
+sudo iptables -A INPUT -p icmp --source 10.10.0.40 --icmp-type 0 -j ACCEPT
+sudo iptables -A INPUT -p icmp --source 10.10.0.40 --icmp-type 8 -j ACCEPT
+sudo iptables -A OUTPUT -p icmp --destination 10.10.0.40 --icmp-type 0 -j ACCEPT
+sudo iptables -A OUTPUT -p icmp --destination 10.10.0.40 --icmp-type 8 -j ACCEPT
+sudo iptables -A INPUT -p icmp --source 172.16.82.106 --icmp-type 0 -j ACCEPT
+sudo iptables -A INPUT -p icmp --source 172.16.82.106 --icmp-type 8 -j ACCEPT
+sudo iptables -A OUTPUT -p icmp --destination 172.16.82.106 --icmp-type 0 -j ACCEPT
+sudo iptables -A OUTPUT -p icmp --destination 172.16.82.106 --icmp-type 8 -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 6579 -m state --state NEW,ESTABLISHED -j ACCEPT
+sudo iptables -A OUTPUT -p tcp --sport 6579 -m state --state NEW,ESTABLISHED -j ACCEPT
+sudo iptables -A INPUT -p udp --dport 6579 -m state --state NEW,ESTABLISHED -j ACCEPT
+sudo iptables -A OUTPUT -p udp --sport 6579 -m state --state NEW,ESTABLISHED -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 4444 -m state --state NEW,ESTABLISHED -j ACCEPT
+sudo iptables -A OUTPUT -p tcp --sport 4444 -m state --state NEW,ESTABLISHED -j ACCEPT
+sudo iptables -A INPUT -p udp --dport 4444 -m state --state NEW,ESTABLISHED -j ACCEPT
+sudo iptables -A OUTPUT -p udp --sport 4444 -m state --state NEW,ESTABLISHED -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 80 -m state --state NEW,ESTABLISHED -j ACCEPT
+sudo iptables -A OUTPUT -p tcp --sport 80 -m state --state NEW,ESTABLISHED -j ACCEPT
+
+
+nc -lvp 9001
+
+
+
